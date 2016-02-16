@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.logging.client.ConsoleLogHandler;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 import com.sencha.gxt.core.client.Style.SelectionMode;
@@ -46,8 +48,12 @@ import com.sencha.gxt.widget.core.client.grid.editing.ClicksToEdit;
 import com.sencha.gxt.widget.core.client.grid.editing.GridEditing;
 import com.sencha.gxt.widget.core.client.grid.editing.GridRowEditing;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class PanList<T> extends FramedPanel{
 //public class PanList<T> extends ContentPanel{
+	private static Logger rootLogger = Logger.getLogger("");
     protected GridEditing<T> editing;
     protected ToolButton tbIns;
     protected ToolButton tbDel;
@@ -104,6 +110,7 @@ public class PanList<T> extends FramedPanel{
 		     }		};
 //---------------------------------------------------------
     public PanList(int w, int h, String Title) {
+    	rootLogger.addHandler(new ConsoleLogHandler());
         addStyleName("margin-10");
         setHeadingText(Title);
         setPixelSize(w, h);
@@ -174,9 +181,12 @@ public class PanList<T> extends FramedPanel{
               @Override  
               public void onSelect(SelectEvent event) {   
              	isIns = true;
+             	rootLogger.log(Level.INFO, "Ins press");
                 editing.cancelEditing();
              	insItem();
+             	rootLogger.log(Level.INFO, "insItem() called");
                 editing.startEditing(new GridCell(0, 0));
+             	rootLogger.log(Level.INFO, "Ins end");
                  }    });
         tbIns.setTitle("Добавить");
              

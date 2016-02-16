@@ -57,7 +57,7 @@
           <compileReport>true</compileReport>
           <logLevel>INFO</logLevel>
           <style>${gwt.style}</style>
-          <resources>
+<!--           <resources>
                 <resource>
                   <directory>src/main/java</directory>
                     <includes>
@@ -65,11 +65,11 @@
                      <include>**/*.gwt.xml</include>
                     </includes>
                </resource>
-             </resources>
+             </resources>--> 
         </configuration>
       </plugin>
 
-      <!-- Copy static web files before executing gwt:run
+      <!-- Copy static web files before executing gwt:run-->
         <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -83,7 +83,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>-->
+      </plugin>
 
     </plugins>
   </build>
