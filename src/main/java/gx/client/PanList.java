@@ -62,7 +62,8 @@ public class PanList<T> extends FramedPanel{
     protected ListStore<T> stT;// = new ListStore<T>(propML.id());
     protected Grid<T> G;
     protected boolean isIns = false;
-    VerticalLayoutContainer vcon = new VerticalLayoutContainer();
+    protected boolean isEditOn = true;
+ 	VerticalLayoutContainer vcon = new VerticalLayoutContainer();
 
     protected Receiver<Void> mergReceiver = new Receiver<Void>() {
 	      public void onSuccess(Void data) {
@@ -118,6 +119,7 @@ public class PanList<T> extends FramedPanel{
     }
 
     public void initValues(boolean firstLoad, boolean isEdit, boolean isBorder){
+    	isEditOn = isEdit;
 	ColumnModel<T> cmML = new ColumnModel<T>(ccL);
         final ListLoader<ListLoadConfig, ListLoadResult<T>> loaderT = new ListLoader<ListLoadConfig, ListLoadResult<T>>(rfpT);
         loaderT.addLoadHandler(new LoadResultListStoreBinding<ListLoadConfig, T, ListLoadResult<T>>(stT));
@@ -276,5 +278,14 @@ public class PanList<T> extends FramedPanel{
 	public void setG(Grid<T> g) {
 		G = g;
 	}
+	
+	   public boolean isEditOn() {
+			return isEditOn;
+		}
+
+		public void setEditOn(boolean isEditOn) {
+			this.isEditOn = isEditOn;
+		}
+
 
 }
